@@ -10,7 +10,7 @@ jobs:
       - name: Install dependencies
         run: pip install requests cloudscraper httpx beautifulsoup4 pyyaml rich pyjwt pypi autopep8 pyinstaller
       - name: Run Script
-        run: timeout 1800 src/main.py
+        run: timeout 1800 /src/main.py
       - name: Retry
         if: ${{ failure() }}
-        run: timeout 1800 python src/main.py
+        run: timeout 1800 python /src/main.py
