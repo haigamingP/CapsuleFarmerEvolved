@@ -1,29 +1,16 @@
 name: Deploy
 
 on:  
-  workflow_dispatch:
-  schedule:
-  - cron: '0 0 * * *'  #every day at 6:00 am EST
+  workflow_run:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.1.0
-      - name: Set up Python
-        uses: actions/setup-python@v4.3.0
-        with:
-          python-version: '3.x'
-          cache: 'pip'
-      - name: Wait for Test
-        uses: fountainhead/action-wait-for-check@v1.1.0
-        with:
-          checkName: test
-          token: ${{ github.token }}
       - name: Install dependencies
         run: pip install requests cloudscraper httpx beautifulsoup4 pyyaml rich pyjwt pypi autopep8 pyinstaller
       - name: Run Script
-        run: timeout 1800 src\main.py
+        run: timeout 1800 src/main.py
       - name: Retry
         if: ${{ failure() }}
-        run: timeout 1800 python src\main.py
+        run: timeout 1800 python src/main.py
