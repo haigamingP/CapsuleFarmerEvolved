@@ -1,7 +1,7 @@
 accounts:
-  accountname:
-    username: "username"
-    password: "password"
-  anotheraccountname:
-    username: "username"
-    password: "password"
+  HaiGaming1310:
+    username: "HaiGaming3101"
+    password: "haigaminglaso1**1"
+debug: True
+notification:
+  toast: true
